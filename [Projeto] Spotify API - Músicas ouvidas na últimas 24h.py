@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[123]:
-
-
 # Importando as bibliotecas
 
 import sqlalchemy
@@ -16,19 +13,11 @@ import datetime
 import sqlite3
 import pytz
 
-
-# In[145]:
-
-
 # Definição constantes
 
 DATABASE_LOCATION = "sqlite:///my_played_tracks.sqlite"
 USER_ID = "Lucas Heluany"
 TOKEN = "BQBkVdQWEqaYDf86UtZSjByeNBAj65Poi6gVtoId4oYXQHY4jPhLR7Sw6bkOO-17FtXR5TvkEJ6yK_61H-fzGr9eVaVzRLjnSe03M2pkUUrXGluGwozraUpLa-8aG3Q6zFtYzLT-vi0xnk0Wuc95i56eo5La-3n3-BSqlizlaDB57VpMB52uVZQp"
-
-
-# In[161]:
-
 
 # Criando as funções de check
 
@@ -59,10 +48,6 @@ def check_if_valid_data(df: pd.DataFrame) -> bool:
             
     return True
 
-
-# In[148]:
-
-
 # Definição dos cabeçalhos da requisição
 
 headers = {
@@ -72,25 +57,14 @@ headers = {
 }
 
 
-# In[149]:
-
-
 # Padroniza o tempo para o timestamp do Unix em milisegundos
 today = datetime.datetime.now()
 yesterday = today - datetime.timedelta(days = 1)
 yesterday_unix_timestamp = int(yesterday.timestamp()) * 1000
 
-
-# In[150]:
-
-
 # Definição da Request
 
 r = requests.get("https://api.spotify.com/v1/me/player/recently-played?after={time}".format(time=yesterday_unix_timestamp), headers = headers)
-
-
-# In[151]:
-
 
 # Definindo os arrays com as informações que vamos usar
 
@@ -101,10 +75,6 @@ artist_names = []
 played_at_list = []
 timestamps = []
 
-
-# In[152]:
-
-
 # Slice do JSON para os dados que vamos usar
 
 for song in data["items"]:
@@ -112,10 +82,6 @@ for song in data["items"]:
     artist_names.append(song["track"]["album"]["artists"][0]["name"])
     played_at_list.append(song["played_at"])
     timestamps.append(song["played_at"][0:10])
-
-
-# In[153]:
-
 
 # Criando o dicionário para transformar num dataframe
 
@@ -126,25 +92,13 @@ song_dict = {
     "timestamp" : timestamps
 }
 
-
-# In[154]:
-
-
 # Criando o DF
 
 song_df = pd.DataFrame(song_dict, columns = ["song_name", "artist_name", "played_at", "timestamp"])
 
-
-# In[162]:
-
-
 # Validando os dados
 if check_if_valid_data(song_df):
     print("Dados válidos. Seguir para o processo de carga.")
-
-
-# In[168]:
-
 
 # Carregando
 
@@ -173,4 +127,3 @@ except:
 conn.close()
 
 print("Banco fechado com sucesso!")
-
