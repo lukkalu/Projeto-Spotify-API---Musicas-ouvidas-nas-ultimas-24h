@@ -36,15 +36,6 @@ def check_if_valid_data(df: pd.DataFrame) -> bool:
 # Checando por unulos
     if df.isnull().values.any():
         raise Exception("Valores nulos encontrados")
-
-# Checando que todos os timestamps são de ontem
-    #yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
-    #yesterday = yesterday.replace(hour = 0, minute = 0, second = 0, microsecond = 0)
-
-    #timestamps = df["timestamp"].tolist()
-    #for timestamp in timestamps:
-    #    if datetime.datetime.strptime(timestamp, '%Y-%m-%d') != yesterday:
-    #        raise Exception("Pelo menos uma das músicas retornadas não tem o timestamp de ontem")
             
     return True
 
