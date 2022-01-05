@@ -16,8 +16,8 @@ import pytz
 # Definição constantes
 
 DATABASE_LOCATION = "sqlite:///my_played_tracks.sqlite"
-USER_ID = "Lucas Heluany"
-TOKEN = "BQBkVdQWEqaYDf86UtZSjByeNBAj65Poi6gVtoId4oYXQHY4jPhLR7Sw6bkOO-17FtXR5TvkEJ6yK_61H-fzGr9eVaVzRLjnSe03M2pkUUrXGluGwozraUpLa-8aG3Q6zFtYzLT-vi0xnk0Wuc95i56eo5La-3n3-BSqlizlaDB57VpMB52uVZQp"
+USER_ID = "seu ID"
+TOKEN = "seu token"
 
 # Criando as funções de check
 
